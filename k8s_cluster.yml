@@ -1,0 +1,19 @@
+- hosts: tag_name_Master_Node
+  roles: 
+  -  role: kube_master_node
+  
+  tasks:
+  - name: "waiting to configured message"
+    debug:
+      msg: MAster configured successfully......
+
+
+- hosts: tag_name_Slave_Node
+  roles:
+  -  role: kube_slave_node
+  
+  tasks: 
+  - name: "waiting for configured message"  
+    debug:
+      msg: Slave_Node configured and  connected to Master_Node  successfully......
+          

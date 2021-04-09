@@ -1,0 +1,44 @@
+---
+# tasks file for aws_instances
+
+- name: Launching the MASTER EC2 instances on AWS Cloud.............
+  ec2:
+    region: "ap-south-1"
+    image: "ami-0bcf5425cdc1d8a85"
+    instance_type: "t2.micro"
+    count: 1
+    vpc_subnet_id: "{{ subnet }}"
+    group_id: "{{ sg }}"
+    instance_tags:
+      Name: "Master_Node"
+    key_name: "{{ key }}"
+    assign_public_ip: yes
+    state: present
+    wait: yes
+    aws_access_key: "{{ access }}"
+    aws_secret_key: "{{ secret }}"
+  register: control
+- debug:
+        msg : "Successfully launched Master"
+
+
+- name: Launching the SLAVE EC2 instances on AWS Cloud.............
+  ec2:
+    region: "ap-south-1"
+    image: "ami-0bcf5425cdc1d8a85"
+    instance_type: "t2.micro"
+    count: 2
+    vpc_subnet_id: "{{ subnet }}"
+    group_id: "{{ sg }}"
+    instance_tags:
+      Name: "Slave_Node"
+    key_name: "{{ key }}"
+    assign_public_ip: yes
+    state: present
+    wait: yes
+    aws_access_key: "{{ access }}"
+    aws_secret_key: "{{ secret }}"
+  register: worker
+- debug:
+        msg : "Successfully launched Slaves"
+

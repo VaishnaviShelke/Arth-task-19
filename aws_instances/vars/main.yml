@@ -1,0 +1,9 @@
+---
+# vars file for aws_instances
+
+access: "xyz"
+secret: "xyz"
+subnet : "subnet-xyz"
+sg: "sg-xyz"
+key: "your-key"
+
